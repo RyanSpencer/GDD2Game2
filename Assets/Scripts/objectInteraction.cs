@@ -11,6 +11,14 @@ public class objectInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonUp(0))
+        {
+            Ray clickRay = new Ray(Input.mousePosition, new Vector3(0.0f, 0.0f, 1.0f));
+            RaycastHit clickRayHit;
+            if (Physics.Raycast(clickRay, out clickRayHit, 20))
+            {
+                
+            }
+        }
 	}
 }
