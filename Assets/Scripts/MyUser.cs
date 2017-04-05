@@ -10,7 +10,7 @@ public class MyUser : MonoBehaviour {
     public GameObject invObj;
     public GameObject selected;
     private Item itemScript;
-    private InventoryManager invScript;
+    public InventoryManager invScript;
 
 	// Use this for initialization
 	void Start () {
