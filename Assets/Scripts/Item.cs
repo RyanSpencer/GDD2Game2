@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour
@@ -13,6 +14,7 @@ public class Item : MonoBehaviour
     public InventoryManager inventory;
     public bool inInventory;
     public bool isHoldable;
+    public int invIndex;
 
 	// Use this for initialization
 	void Start () {
@@ -28,11 +30,9 @@ public class Item : MonoBehaviour
         inInventory = false;
         myUserScript = myUserObject.GetComponent<MyUser>();
         userText = myUserScript.textElement.GetComponent<Text>();
-        //inventory = (InventoryManager)invObj.GetComponent<InventoryManager>();
-
     }
 
-    protected virtual void OnMouseUp() {
-        
-    }
+    public virtual void OnPointerClick(PointerEventData eventData) { }
+
+    
 }

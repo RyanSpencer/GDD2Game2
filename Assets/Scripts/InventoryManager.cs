@@ -33,6 +33,27 @@ public class InventoryManager : MonoBehaviour {
 		
 	}
 
+    public void removeItem(int index, string itemToDestroy)
+    {
+
+        switch (itemToDestroy)
+        {
+            case "Matches":
+                Destroy(slotArray[index].GetComponent<Matches>());
+                slotArray[index].GetComponent<SpriteRenderer>().sprite = null;
+                break;
+            case "Candle":
+                Destroy(slotArray[index].GetComponent<Candle>());
+                slotArray[index].GetComponent<SpriteRenderer>().sprite = null;
+                break;
+        }
+    }
+    public void changeSlotSprite(int index, Sprite newSprite)
+    {
+        Sprite oldSprite = slotArray[index].GetComponent<SpriteRenderer>().sprite;
+        slotArray[index].GetComponent<SpriteRenderer>().sprite = Sprite.Create(newSprite.texture, oldSprite.rect, new Vector3(0.5f, 0.5f), 5);
+    }
+
     public void addItem(GameObject item, string itemType)
     {
         /*
@@ -56,6 +77,7 @@ public class InventoryManager : MonoBehaviour {
                         slotArray[i].GetComponent<Candle>().userText = item.GetComponent<Item>().userText;
                         slotArray[i].GetComponent<Candle>().invObj = item.GetComponent<Item>().invObj;
                         slotArray[i].GetComponent<Candle>().inventory = item.GetComponent<Item>().invObj.GetComponent<InventoryManager>();
+                        slotArray[i].GetComponent<Candle>().invIndex = i;
                         break;
                     case "Matches":
                         slotArray[i].AddComponent<Matches>();
@@ -64,8 +86,8 @@ public class InventoryManager : MonoBehaviour {
                         slotArray[i].GetComponent<Matches>().userText = item.GetComponent<Item>().userText;
                         slotArray[i].GetComponent<Matches>().invObj = item.GetComponent<Item>().invObj;
                         slotArray[i].GetComponent<Matches>().inventory = item.GetComponent<Item>().invObj.GetComponent<InventoryManager>();
+                        slotArray[i].GetComponent<Matches>().invIndex = i;
                         break;
-
                 }
 
                 occupied[i] = true;

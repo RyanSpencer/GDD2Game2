@@ -19,7 +19,7 @@ public class Door : Item
 
     }
 
-    protected override void OnMouseUp()
+    protected void OnMouseUp()
     {
         if (isHoldable)
         {

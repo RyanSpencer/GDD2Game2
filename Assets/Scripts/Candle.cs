@@ -5,12 +5,13 @@ using UnityEngine;
 public class Candle : Item
 {
     public bool isLit;
+    public Sprite litCandle;
 
     // Use this for initialization
     void Start () {
         base.init();
         isLit = false;
-
+        
         if (invObj != null) { inventory = invObj.GetComponent<InventoryManager>(); }
     }
 
@@ -22,9 +23,13 @@ public class Candle : Item
     {
         isLit = true;
         myUserScript.candleIsLit = true;
+        //gameObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(litCandle.texture, gameObject.GetComponent<SpriteRenderer>().sprite.rect, new Vector3(0.5f, 0.5f), 5); ;
+        //inventory.addItem(gameObject, "Candle");
+        //inventory.removeItem(invIndex, "Candle");
+        
     }
 
-    protected override void OnMouseUp()
+    protected void OnMouseUp()
     {
         if (isHoldable)
         {
@@ -47,16 +52,17 @@ public class Candle : Item
                 case MyUser.type.NULL:
                     myUserScript.selectedType = MyUser.type.CANDLE;
                     myUserScript.selectedObj = gameObject;
-                    userText.text = "You selected the candle!\n" + userText.text;
+                    userText.text = "Selected: Candle\n" + userText.text;
                     break;
                 case MyUser.type.CANDLE:
                     myUserScript.selectedType = MyUser.type.NULL;
                     myUserScript.selectedObj = null;
-                    userText.text = "Candle no longer selected!\n" + userText.text;
+                    userText.text = "Deselected: Candle\n" + userText.text;
                     break;
                 case MyUser.type.MATCHES:
                     if (!isLit)
                     {
+                        inventory.removeItem(myUserScript.selectedObj.GetComponent<Matches>().invIndex, "Matches");
                         myUserScript.selectedType = MyUser.type.NULL;
                         myUserScript.selectedObj = null;
                         userText.text = "You lit the candle!\n" + userText.text;
@@ -66,7 +72,7 @@ public class Candle : Item
                     {
                         myUserScript.selectedType = MyUser.type.NULL;
                         myUserScript.selectedObj = null;
-                        userText.text = "The candle is already lit!\n" + userText.text;
+                        userText.text = "The candle is already lit.\n" + userText.text;
                     }
     
                     break;

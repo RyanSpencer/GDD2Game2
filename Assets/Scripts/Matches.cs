@@ -19,7 +19,7 @@ public class Matches : Item
 
     }
 
-    protected override void OnMouseUp()
+    protected void OnMouseUp()
     {
         if (isHoldable)
         {
@@ -42,13 +42,14 @@ public class Matches : Item
                 case MyUser.type.NULL:
                     myUserScript.selectedType = MyUser.type.MATCHES;
                     myUserScript.selectedObj = gameObject;
-                    userText.text = "You selected the matches!\n" + userText.text;
+                    userText.text = "Selected: Matches\n" + userText.text;
                     break;
                 case MyUser.type.CANDLE:
                     if (!myUserScript.selectedObj.GetComponent<Candle>().isLit)
                     {
                         myUserScript.selectedType = MyUser.type.NULL;
                         myUserScript.selectedObj.GetComponent<Candle>().LightCandle();
+                        inventory.removeItem(invIndex, "Matches");
                         myUserScript.selectedObj = null;
                         userText.text = "You lit the candle!\n" + userText.text;
                     }
@@ -56,12 +57,12 @@ public class Matches : Item
                     {
                         myUserScript.selectedType = MyUser.type.NULL;
                         myUserScript.selectedObj = null;
-                        userText.text = "The candle is already lit!\n" + userText.text;
+                        userText.text = "The candle is already lit.\n" + userText.text;
                     }
                     break;
                 case MyUser.type.MATCHES:
                     myUserScript.selectedType = MyUser.type.NULL;
-                    userText.text = "Matches no longer selected!\n" + userText.text;
+                    userText.text = "Deselected: Matches\n" + userText.text;
                     break;
                 default:
                     userText.text = "Nothing interesting happens.\n" + userText.text;
