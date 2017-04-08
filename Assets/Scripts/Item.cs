@@ -5,19 +5,13 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public enum type
-    {
-        CANDLE,
-        DOOR,
-        MATCHES
-    };
-    public type itemType;
+
     public GameObject myUserObject;
     public MyUser myUserScript;
     public Text userText;
     public GameObject invObj;
     public InventoryManager inventory;
-    protected bool inInventory;
+    public bool inInventory;
     public bool isHoldable;
 
 	// Use this for initialization
@@ -31,13 +25,14 @@ public class Item : MonoBehaviour
 	}
     public void init()
     {
-        Debug.Log("Candle clicked");
         inInventory = false;
         myUserScript = myUserObject.GetComponent<MyUser>();
         userText = myUserScript.textElement.GetComponent<Text>();
-        inventory = invObj.GetComponent<InventoryManager>();
+        //inventory = (InventoryManager)invObj.GetComponent<InventoryManager>();
 
     }
 
-    protected virtual void OnMouseUp() {}
+    protected virtual void OnMouseUp() {
+        
+    }
 }

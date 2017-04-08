@@ -4,17 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MyUser : MonoBehaviour {
-
+    public enum type
+    {
+        NULL,
+        CANDLE,
+        DOOR,
+        MATCHES
+    };
+    public type selectedType = type.NULL;
+    public GameObject selectedObj;
     public GameObject textElement;
     private Text textBox;
     public GameObject invObj;
-    public GameObject selected;
     private Item itemScript;
     public InventoryManager invScript;
+    public bool candleIsLit = false;
 
 	// Use this for initialization
 	void Start () {
-        selected = null;
         invScript = invObj.GetComponent<InventoryManager>();
         textBox = textElement.GetComponent<Text>();
 	}
